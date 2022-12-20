@@ -74,7 +74,7 @@ public class TelaConsultaPpc extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "ID", "Nome Grupo"
+                "ID", "Ano PPC"
             }
         ));
         tblPpc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -84,11 +84,17 @@ public class TelaConsultaPpc extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblPpc);
 
-        jLabel1.setText("Nome Grupo:");
+        txtPesquisaPpc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisaPpcKeyReleased(evt);
+            }
+        });
+
+        jLabel1.setText("Ano PPC:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel3.setText("PESQUISA DE GRUPOS DE EQUIVALÊNCIA");
+        jLabel3.setText("PESQUISA DE PPC");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,7 +111,7 @@ public class TelaConsultaPpc extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtPesquisaPpc, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
+                        .addGap(142, 142, 142)
                         .addComponent(jLabel3)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -142,6 +148,11 @@ public class TelaConsultaPpc extends javax.swing.JFrame {
         setar_campos_ppc();
         this.dispose();
     }//GEN-LAST:event_tblPpcMouseClicked
+
+    private void txtPesquisaPpcKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaPpcKeyReleased
+        // TODO add your handling code here:
+        pesquisar_ppc();
+    }//GEN-LAST:event_txtPesquisaPpcKeyReleased
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

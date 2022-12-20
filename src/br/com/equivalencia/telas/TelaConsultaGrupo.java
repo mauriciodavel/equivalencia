@@ -86,6 +86,12 @@ public class TelaConsultaGrupo extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblGrupo);
 
+        txtPesquisaGrupo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisaGrupoKeyReleased(evt);
+            }
+        });
+
         jLabel1.setText("Nome Grupo:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -144,6 +150,11 @@ public class TelaConsultaGrupo extends javax.swing.JFrame {
         setar_campos_grupo();
         this.dispose();
     }//GEN-LAST:event_tblGrupoMouseClicked
+
+    private void txtPesquisaGrupoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaGrupoKeyReleased
+        // TODO add your handling code here:
+        pesquisar_grupo();
+    }//GEN-LAST:event_txtPesquisaGrupoKeyReleased
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

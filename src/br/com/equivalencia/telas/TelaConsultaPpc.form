@@ -40,7 +40,7 @@
                       <Component id="txtPesquisaPpc" min="-2" pref="175" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -77,7 +77,7 @@
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="2" rowCount="4">
                 <Column editable="true" title="ID" type="java.lang.Object"/>
-                <Column editable="true" title="Nome Grupo" type="java.lang.Object"/>
+                <Column editable="true" title="Ano PPC" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>
@@ -88,10 +88,13 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="txtPesquisaPpc">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPesquisaPpcKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nome Grupo:"/>
+        <Property name="text" type="java.lang.String" value="Ano PPC:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -102,7 +105,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="0" red="cc" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="PESQUISA DE GRUPOS DE EQUIVAL&#xca;NCIA"/>
+        <Property name="text" type="java.lang.String" value="PESQUISA DE PPC"/>
       </Properties>
     </Component>
   </SubComponents>

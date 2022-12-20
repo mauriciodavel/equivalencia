@@ -77,6 +77,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menCad.add(menCadPpc);
 
         menCadUc.setText("Unidades Curriculares");
+        menCadUc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menCadUcActionPerformed(evt);
+            }
+        });
         menCad.add(menCadUc);
 
         menCadGrupo.setText("Grupo de Equivalência");
@@ -160,6 +165,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaGrupo grupo = new TelaGrupo();
         grupo.setVisible(true);
     }//GEN-LAST:event_menCadGrupoActionPerformed
+
+    private void menCadUcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menCadUcActionPerformed
+        // TODO add your handling code here:
+        TelaDisciplina disciplina = new TelaDisciplina();
+        disciplina.setVisible(true);
+    }//GEN-LAST:event_menCadUcActionPerformed
 
 
     public static void main(String args[]) {
