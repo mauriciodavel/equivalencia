@@ -28,17 +28,23 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <Component id="jScrollPane1" pref="464" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="253" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="lblNomeGrupo" alignment="0" max="32767" attributes="0"/>
-                      <Component id="lblIdGrupo" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="lblPequisaGrupo" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtPesquisaGrupo" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="lblNomeGrupo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblIdGrupo" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="lblPequisaGrupo" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jLabel1" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
@@ -47,10 +53,10 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtIdGrupo" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
-                                  <Component id="txtNomeGrupo" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
+                                  <Component id="txtIdGrupo" min="-2" pref="54" max="-2" attributes="0"/>
+                                  <Component id="txtNomeGrupo" min="-2" pref="248" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="124" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnCadastrar" min="-2" pref="82" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -60,11 +66,20 @@
                       <Component id="btnExcluir" min="-2" pref="83" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="txtChMin" min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                              <Component id="jLabel2" min="-2" pref="67" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtChMax" min="-2" pref="50" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="txtPesquisaGrupo" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-          </Group>
-          <Group type="102" attributes="0">
-              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -75,6 +90,9 @@
               <Component id="jLabel3" min="-2" pref="48" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnCadastrar" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
+                  <Component id="btnEditar" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
+                  <Component id="btnExcluir" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblIdGrupo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -85,18 +103,24 @@
                           <Component id="lblNomeGrupo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtNomeGrupo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="txtChMin" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtChMax" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtPesquisaGrupo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPequisaGrupo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Component id="btnCadastrar" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
-                  <Component id="btnEditar" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
-                  <Component id="btnExcluir" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtPesquisaGrupo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblPequisaGrupo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="421" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -151,10 +175,39 @@
         <Component class="javax.swing.JTable" name="tblGrupo">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="2" rowCount="4">
+              <Table columnCount="4" rowCount="4">
                 <Column editable="true" title="ID Grupo" type="java.lang.Object"/>
                 <Column editable="true" title="Nome Grupo" type="java.lang.Object"/>
+                <Column editable="true" title="C.H. M&#xed;nima" type="java.lang.Object"/>
+                <Column editable="true" title="C.H. M&#xe1;xima" type="java.lang.Object"/>
               </Table>
+            </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0">
+                <Column maxWidth="100" minWidth="100" prefWidth="100" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="100" minWidth="100" prefWidth="100" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="100" minWidth="100" prefWidth="100" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="100" minWidth="100" prefWidth="100" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+              </TableColumnModel>
+            </Property>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
           <Events>
@@ -192,6 +245,20 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="C.H. M&#xed;nima:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtChMin">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtChMax">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="C.H. M&#xe1;xima:"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

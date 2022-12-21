@@ -40,13 +40,15 @@ public class TelaGrupo extends javax.swing.JFrame {
 
     private void adicionar() {
 
-        String sql = "insert into tb_grupo_equivalencia(desc_grupo) values(?)";
+        String sql = "insert into tb_grupo_equivalencia(desc_grupo, ch_minima, ch_maxima) values(?,?,?)";
         try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtNomeGrupo.getText());
+            pst.setString(2, txtChMin.getText());
+            pst.setString(3, txtChMax.getText());
 
             // validação dos campos obrigatórios
-            if ((txtNomeGrupo.getText().isEmpty())) {
+            if ((txtNomeGrupo.getText().isEmpty()) || (txtChMin.getText().isEmpty()) || (txtNomeGrupo.getText().isEmpty())) {
                 JOptionPane.showMessageDialog(null, "Campo de preenchimento obrigatório está em branco!");
 
             } else {
@@ -61,6 +63,8 @@ public class TelaGrupo extends javax.swing.JFrame {
                     // as linhas abaixo limpam os campos para que o usuario possa cadastrar um novo
                     txtIdGrupo.setText(null);
                     txtNomeGrupo.setText(null);
+                    txtChMin.setText(null);
+                    txtChMax.setText(null);
                     btnEditar.setEnabled(false);
                     btnExcluir.setEnabled(false);
                 }
@@ -72,15 +76,17 @@ public class TelaGrupo extends javax.swing.JFrame {
     }
 
     private void alterar() {
-        String sql = "update tb_grupo_equivalencia set desc_grupo=? where id_grupo=?";
+        String sql = "update tb_grupo_equivalencia set desc_grupo=?, ch_minima=?, ch_maxima=? where id_grupo=?";
 
         try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtNomeGrupo.getText());
-            pst.setString(2, txtIdGrupo.getText());
+            pst.setString(2, txtChMin.getText());
+            pst.setString(3, txtChMax.getText());
+            pst.setString(4, txtIdGrupo.getText());
 
             // validação dos campos obrigatórios
-            if ((txtIdGrupo.getText().isEmpty()) || (txtNomeGrupo.getText().isEmpty())) {
+            if ((txtIdGrupo.getText().isEmpty()) || (txtNomeGrupo.getText().isEmpty()) || (txtChMin.getText().isEmpty()) || (txtChMax.getText().isEmpty())) {
                 JOptionPane.showMessageDialog(null, "Campo de preenchimento obrigatório está em branco!");
 
             } else {
@@ -92,6 +98,8 @@ public class TelaGrupo extends javax.swing.JFrame {
                     // as linhas abaixo limpam os campos para que o usuario possa cadastrar um novo
                     txtIdGrupo.setText(null);
                     txtNomeGrupo.setText(null);
+                    txtChMin.setText(null);
+                    txtChMax.setText(null);
                     btnCadastrar.setEnabled(true);
                     btnEditar.setEnabled(false);
                     btnExcluir.setEnabled(false);
@@ -160,6 +168,10 @@ public class TelaGrupo extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtChMin = new javax.swing.JTextField();
+        txtChMax = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SIS Equivalencia - Grupos de Equivalência");
@@ -189,13 +201,13 @@ public class TelaGrupo extends javax.swing.JFrame {
 
         tblGrupo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID Grupo", "Nome Grupo"
+                "ID Grupo", "Nome Grupo", "C.H. Mínima", "C.H. Máxima"
             }
         ));
         tblGrupo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -204,6 +216,20 @@ public class TelaGrupo extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblGrupo);
+        if (tblGrupo.getColumnModel().getColumnCount() > 0) {
+            tblGrupo.getColumnModel().getColumn(0).setMinWidth(100);
+            tblGrupo.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblGrupo.getColumnModel().getColumn(0).setMaxWidth(100);
+            tblGrupo.getColumnModel().getColumn(1).setMinWidth(100);
+            tblGrupo.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tblGrupo.getColumnModel().getColumn(1).setMaxWidth(100);
+            tblGrupo.getColumnModel().getColumn(2).setMinWidth(100);
+            tblGrupo.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tblGrupo.getColumnModel().getColumn(2).setMaxWidth(100);
+            tblGrupo.getColumnModel().getColumn(3).setMinWidth(100);
+            tblGrupo.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tblGrupo.getColumnModel().getColumn(3).setMaxWidth(100);
+        }
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/equivalencia/icones/delete.png"))); // NOI18N
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -226,20 +252,28 @@ public class TelaGrupo extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("C.H. Mínima:");
+
+        jLabel2.setText("C.H. Máxima:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                .addGap(253, 253, 253))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lblNomeGrupo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblIdGrupo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(lblPequisaGrupo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPesquisaGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblNomeGrupo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblIdGrupo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblPequisaGrupo))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -248,17 +282,24 @@ public class TelaGrupo extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtIdGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNomeGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                                    .addComponent(txtNomeGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75))))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(75, 75, 75))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtChMin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtChMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPesquisaGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,6 +308,9 @@ public class TelaGrupo extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblIdGrupo)
@@ -274,16 +318,20 @@ public class TelaGrupo extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNomeGrupo)
-                            .addComponent(txtNomeGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPesquisaGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPequisaGrupo))
+                            .addComponent(txtNomeGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtChMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2)
+                                .addComponent(txtChMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPesquisaGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPequisaGrupo))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -360,12 +408,16 @@ public class TelaGrupo extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblIdGrupo;
     private javax.swing.JLabel lblNomeGrupo;
     private javax.swing.JLabel lblPequisaGrupo;
     private javax.swing.JTable tblGrupo;
+    private javax.swing.JTextField txtChMax;
+    private javax.swing.JTextField txtChMin;
     private javax.swing.JTextField txtIdGrupo;
     private javax.swing.JTextField txtNomeGrupo;
     private javax.swing.JTextField txtPesquisaGrupo;

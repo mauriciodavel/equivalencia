@@ -25,7 +25,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menCadGrupo = new javax.swing.JMenuItem();
         menOpc = new javax.swing.JMenu();
         menOpcLogout = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menOpcSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SIS Equivalência - SENAI Vitória - Tela Principal");
@@ -98,11 +98,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menOpcLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, java.awt.event.InputEvent.ALT_MASK));
         menOpcLogout.setText("Logout");
+        menOpcLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menOpcLogoutActionPerformed(evt);
+            }
+        });
         menOpc.add(menOpcLogout);
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem1.setText("Sair");
-        menOpc.add(jMenuItem1);
+        menOpcSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        menOpcSair.setText("Sair");
+        menOpcSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menOpcSairActionPerformed(evt);
+            }
+        });
+        menOpc.add(menOpcSair);
 
         jMenuBar1.add(menOpc);
 
@@ -172,6 +182,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         disciplina.setVisible(true);
     }//GEN-LAST:event_menCadUcActionPerformed
 
+    private void menOpcLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menOpcLogoutActionPerformed
+        // TODO add your handling code here:
+        TelaLogin login = new TelaLogin();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menOpcLogoutActionPerformed
+
+    private void menOpcSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menOpcSairActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_menOpcSairActionPerformed
+
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -208,7 +230,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel lblData;
     public static javax.swing.JLabel lblUsuario;
     private javax.swing.JMenuItem manCadArea;
@@ -219,5 +240,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menCadUc;
     private javax.swing.JMenu menOpc;
     private javax.swing.JMenuItem menOpcLogout;
+    private javax.swing.JMenuItem menOpcSair;
     // End of variables declaration//GEN-END:variables
 }
