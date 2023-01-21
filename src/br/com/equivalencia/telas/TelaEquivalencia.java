@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 
 public class TelaEquivalencia extends javax.swing.JFrame {
@@ -131,12 +132,12 @@ public class TelaEquivalencia extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Não existem cursos cadastrados para a área selecionada!");
         }
     }
-    
+
     private void listar_disciplinas() {
         setar_id_ppc();
         String sql = "select id_disciplina as 'Id U.C.', nome_disciplina as 'Disciplina', ch_disciplina as 'C.H. da U.C.', ch_presencial as 'C.H. Presencial', ch_ead as 'C.H. EAD', id_grupo_equivalencia as 'Grupo Equivalência', id_ppc as 'PPC' from tb_disciplinas where id_ppc=?";
         tblDisciplinas.setEnabled(true);
-        
+
         try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtIdPpc.getText());
@@ -149,7 +150,7 @@ public class TelaEquivalencia extends javax.swing.JFrame {
         }
     }
 
-        private void pesquisar_area1() {
+    private void pesquisar_area1() {
         String sql = "select * from tb_area_tecnologica order by nome_area";
         txtIdArea1.setText(null);
         txtIdCurso1.setText(null);
@@ -160,7 +161,7 @@ public class TelaEquivalencia extends javax.swing.JFrame {
             cboArea1.removeAllItems();
             while (rs.next()) {
                 cboArea1.addItem(rs.getString(2));
-                
+
             }
 
         } catch (Exception e) {
@@ -266,12 +267,12 @@ public class TelaEquivalencia extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Não existem planos de curso cadastrados para o curso selecionado!");
         }
     }
-    
+
     private void listar_disciplinas1() {
         setar_id_ppc1();
         String sql = "select id_disciplina as 'Id U.C.', nome_disciplina as 'Disciplina', ch_disciplina as 'C.H. da U.C.', ch_presencial as 'C.H. Presencial', ch_ead as 'C.H. EAD', id_grupo_equivalencia as 'Grupo Equivalência', id_ppc as 'PPC' from tb_disciplinas where id_ppc=?";
         tblDisciplinas1.setEnabled(true);
-        
+
         try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtIdPpc1.getText());
@@ -284,6 +285,32 @@ public class TelaEquivalencia extends javax.swing.JFrame {
         }
     }
 
+//    public void compararListas() {
+//
+//        DefaultTableModel tdm = (DefaultTableModel) tblDisciplinas.getModel();
+//
+//        DefaultTableModel tdm2 = (DefaultTableModel) tblDisciplinas1.getModel();
+//
+//        DefaultTableModel tdm3 = (DefaultTableModel) tblDisciplinas2.getModel();
+//
+//        tdm3.setRowCount(0);
+//
+//        tdm.getDataVector().forEach(l -> {
+//
+//            tdm2.getDataVector().forEach(m -> {
+//
+//                if (l.get(1).equals(m.get(1))) {
+//                    tdm3.addRow(new Object[]{
+//                        l.get(0),
+//                        l.get(1).toString().toUpperCase(),
+//                        l.get(2).toString(),
+//                        l.get(3).toString()
+//
+//                    });
+//                }
+//            });
+//        });
+//    }
 
     public TelaEquivalencia() {
         initComponents();
@@ -311,7 +338,7 @@ public class TelaEquivalencia extends javax.swing.JFrame {
         txtIdArea1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tblDisciplinas2 = new javax.swing.JTable();
         cboArea = new javax.swing.JComboBox<>();
         cboCurso = new javax.swing.JComboBox<>();
         cboPpc = new javax.swing.JComboBox<>();
@@ -321,8 +348,11 @@ public class TelaEquivalencia extends javax.swing.JFrame {
         cboPpc1 = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblDisciplinas1 = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("SIS Equivalência - SENAI Vitória - Verificar Equivalência");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -366,7 +396,7 @@ public class TelaEquivalencia extends javax.swing.JFrame {
 
         jLabel6.setText("Id. Área Técnológica:");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tblDisciplinas2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -377,7 +407,7 @@ public class TelaEquivalencia extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(tblDisciplinas2);
 
         cboArea.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -441,6 +471,14 @@ public class TelaEquivalencia extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(tblDisciplinas1);
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(204, 0, 51));
+        jLabel7.setText("PPC Cursado");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(204, 0, 51));
+        jLabel8.setText("PPC a Cursar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -468,13 +506,17 @@ public class TelaEquivalencia extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(cboArea, 0, 260, Short.MAX_VALUE)
                                 .addComponent(cboCurso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cboPpc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(cboPpc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel7)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane4)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -490,15 +532,13 @@ public class TelaEquivalencia extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtIdArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cboArea1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cboCurso1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cboPpc1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(241, 241, 241))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4)
-                        .addContainerGap())))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(cboArea1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cboCurso1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cboPpc1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(241, 241, 241))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(442, 442, 442)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -507,7 +547,10 @@ public class TelaEquivalencia extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -548,7 +591,7 @@ public class TelaEquivalencia extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
@@ -583,8 +626,8 @@ public class TelaEquivalencia extends javax.swing.JFrame {
 
     private void cboPpcFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboPpcFocusLost
         // TODO add your handling code here:
-       setar_id_ppc();
-       listar_disciplinas();
+        setar_id_ppc();
+        listar_disciplinas();
     }//GEN-LAST:event_cboPpcFocusLost
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -660,12 +703,14 @@ public class TelaEquivalencia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTable tblDisciplinas;
     private javax.swing.JTable tblDisciplinas1;
+    private javax.swing.JTable tblDisciplinas2;
     public static javax.swing.JTextField txtIdArea;
     public static javax.swing.JTextField txtIdArea1;
     public static javax.swing.JTextField txtIdCurso;
