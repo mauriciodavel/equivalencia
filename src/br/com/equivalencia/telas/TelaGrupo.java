@@ -14,7 +14,8 @@ public class TelaGrupo extends javax.swing.JFrame {
     ResultSet rs = null;
 
     private void pesquisar_grupo() {
-        String sql = "select id_grupo as 'Id Grupo', desc_grupo as 'Nome Grupo' from tb_grupo_equivalencia where desc_grupo like ?";
+        String sql = "select id_grupo as 'Id Grupo', desc_grupo as 'Nome Grupo', ch_minima as 'C.H. Min.', ch_maxima as 'C.H. Máx.' from tb_grupo_equivalencia where desc_grupo like ?\n" +
+        "order by desc_grupo";
 
         try {
             pst = conexao.prepareStatement(sql);
@@ -33,6 +34,8 @@ public class TelaGrupo extends javax.swing.JFrame {
         int setar = tblGrupo.getSelectedRow();
         txtIdGrupo.setText(tblGrupo.getModel().getValueAt(setar, 0).toString());
         txtNomeGrupo.setText(tblGrupo.getModel().getValueAt(setar, 1).toString());
+        txtChMin.setText(tblGrupo.getModel().getValueAt(setar, 2).toString());
+        txtChMax.setText(tblGrupo.getModel().getValueAt(setar, 3).toString());
         btnEditar.setEnabled(true);
         btnExcluir.setEnabled(true);
         btnCadastrar.setEnabled(false);

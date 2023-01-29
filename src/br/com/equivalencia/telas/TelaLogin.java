@@ -34,8 +34,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 if (perfil.equals("admin")) {
                     TelaPrincipal principal = new TelaPrincipal();
                     principal.setVisible(true);
-                    //TelaPrincipal.menRel.setEnabled(true);
-                    //TelaPrincipal.MenCadUsu.setEnabled(true);
+                    principal.menCad.setEnabled(true);
                     TelaPrincipal.lblUsuario.setText(rs.getString(2));
                     TelaPrincipal.lblUsuario.setForeground(Color.red);
                     // fechando a tela de login ao logar

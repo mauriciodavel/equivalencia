@@ -77,7 +77,7 @@ public class TelaCursos extends javax.swing.JFrame {
                 // a linha abaixo serve de apoio ao entendimento da lógica
                 System.out.println(adicionado);
                 if (adicionado > 0) {
-                    JOptionPane.showMessageDialog(null, "Área Tecnológica cadastrada com sucesso!");
+                    JOptionPane.showMessageDialog(null, "Curso cadastrado com sucesso!");
                     // as linhas abaixo limpam os campos para que o usuario possa cadastrar um novo
                     txtNomeCurso.setText(null);
                     txtIdArea.setText(null);

@@ -14,7 +14,11 @@ public class TelaConsultaPpc extends javax.swing.JFrame {
     ResultSet rs = null;
 
     private void pesquisar_ppc() {
-        String sql = "select id_ppc as 'Id PPC', desc_ano as 'Ano PPC', ch_curso as 'C.H.', modalidade as 'Modalidade', id_curso as 'Cod Curso' from tb_ppc where desc_ano like ?";
+        String sql = "SELECT tb_ppc.id_ppc as ID, tb_ppc.desc_ano as 'Ano PPC', tb_ppc.ch_curso as 'C.H.', tb_ppc.modalidade as Modalidade, tb_cursos.nome_curso as Curso \n" +
+                    "FROM tb_ppc\n" +
+                    "INNER JOIN tb_cursos\n" +
+                    "ON tb_ppc.id_curso = tb_cursos.id_curso\n" +
+                    "where tb_ppc.desc_ano like '%' ? '%' order by tb_cursos.nome_curso" ;
 
         try {
             pst = conexao.prepareStatement(sql);
@@ -68,13 +72,13 @@ public class TelaConsultaPpc extends javax.swing.JFrame {
 
         tblPpc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Ano PPC"
+                "ID", "Ano PPC", "C.H.", "Modalidade", "Id Cuso", "Nome Curso"
             }
         ));
         tblPpc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -103,17 +107,18 @@ public class TelaConsultaPpc extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPesquisaPpc, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(jLabel3)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtPesquisaPpc, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(142, 142, 142)
+                                .addComponent(jLabel3)))
+                        .addGap(0, 328, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -14,7 +14,11 @@ public class TelaPpc extends javax.swing.JFrame {
     ResultSet rs = null;
 
     private void pesquisar_ppc() {
-        String sql = "select id_ppc as 'Id PPC', desc_ano as 'Ano PPC', ch_curso as 'C.H.', modalidade as 'Modalidade', id_curso as 'Cod Curso' from tb_ppc where desc_ano like ?";
+        String sql = "SELECT tb_ppc.id_ppc as ID, tb_ppc.desc_ano as 'Ano PPC', tb_ppc.ch_curso as 'C.H.', tb_ppc.modalidade as Modalidade, tb_cursos.id_curso as 'ID Curso', tb_cursos.nome_curso as Curso \n" +
+                    "FROM tb_ppc\n" +
+                    "INNER JOIN tb_cursos\n" +
+                    "ON tb_ppc.id_curso = tb_cursos.id_curso\n" +
+                    "where tb_ppc.desc_ano like '%' ? '%' order by tb_cursos.nome_curso" ;
 
         try {
             pst = conexao.prepareStatement(sql);
@@ -135,7 +139,7 @@ public class TelaPpc extends javax.swing.JFrame {
                 System.out.println(adicionado);
                 System.out.println(sql);
                 if (adicionado > 0) {
-                    JOptionPane.showMessageDialog(null, "Informações de Área Tecnológica alteradas com sucesso!");
+                    JOptionPane.showMessageDialog(null, "Informações de Plano de Curso alteradas com sucesso!");
                     // as linhas abaixo limpam os campos para que o usuario possa cadastrar um novo
                     txtIdCurso.setText(null);
                     txtAnoPpc.setText(null);
@@ -280,15 +284,15 @@ public class TelaPpc extends javax.swing.JFrame {
 
         tblPpc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Id PPC", "Ano PPC", "C. H. PPC", "Modalidade", "ID Curso"
+                "ID", "Ano PPC", "C. H. PPC", "Modalidade", "ID Curso", "Curso"
             }
         ));
         tblPpc.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
@@ -387,7 +391,7 @@ public class TelaPpc extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
@@ -402,10 +406,10 @@ public class TelaPpc extends javax.swing.JFrame {
                                                         .addComponent(lblIdPpc))
                                                     .addComponent(lblAnoPpc, javax.swing.GroupLayout.Alignment.TRAILING))
                                                 .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(txtIdPpc, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtAnoPpc, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(42, 42, 42)
+                                                    .addComponent(txtAnoPpc, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(lblChPpc)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addGroup(layout.createSequentialGroup()
@@ -421,11 +425,11 @@ public class TelaPpc extends javax.swing.JFrame {
                                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(14, 14, 14)))
                                 .addComponent(txtModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPpcPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(28, 28, 28)
+                                .addComponent(txtPpcPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(116, 116, 116)
                         .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -438,18 +442,16 @@ public class TelaPpc extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(93, 93, 93)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtNomeCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtIdCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(txtIdCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 853, javax.swing.GroupLayout.PREFERRED_SIZE)

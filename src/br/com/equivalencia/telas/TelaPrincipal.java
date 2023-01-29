@@ -23,10 +23,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menCadPpc = new javax.swing.JMenuItem();
         menCadUc = new javax.swing.JMenuItem();
         menCadGrupo = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menEquivalencia = new javax.swing.JMenu();
+        menRealizarEquivalencia = new javax.swing.JMenuItem();
         menOpc = new javax.swing.JMenu();
         menOpcLogout = new javax.swing.JMenuItem();
         menOpcSair = new javax.swing.JMenuItem();
+        menAjuda = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SIS Equivalência - SENAI Vitória - Tela Principal");
@@ -52,6 +56,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
 
         menCad.setText("Cadastro");
+        menCad.setEnabled(false);
 
         manCadArea.setText("Área Tecnológica");
         manCadArea.addActionListener(new java.awt.event.ActionListener() {
@@ -93,19 +98,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menCad.add(menCadGrupo);
 
-        jMenuItem1.setText("Realizar Equivalência");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar1.add(menCad);
+
+        menEquivalencia.setText("Equivalência");
+
+        menRealizarEquivalencia.setText("Realizar Equivalência");
+        menRealizarEquivalencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                menRealizarEquivalenciaActionPerformed(evt);
             }
         });
-        menCad.add(jMenuItem1);
+        menEquivalencia.add(menRealizarEquivalencia);
 
-        jMenuBar1.add(menCad);
+        jMenuBar1.add(menEquivalencia);
 
         menOpc.setText("Opções");
 
-        menOpcLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, java.awt.event.InputEvent.ALT_MASK));
+        menOpcLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, java.awt.event.InputEvent.ALT_DOWN_MASK));
         menOpcLogout.setText("Logout");
         menOpcLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +123,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menOpc.add(menOpcLogout);
 
-        menOpcSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        menOpcSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_DOWN_MASK));
         menOpcSair.setText("Sair");
         menOpcSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +133,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menOpc.add(menOpcSair);
 
         jMenuBar1.add(menOpc);
+
+        menAjuda.setText("Ajuda");
+
+        jMenuItem1.setText("Fluxo de Processo");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menAjuda.add(jMenuItem1);
+
+        jMenuItem2.setText("Manual");
+        menAjuda.add(jMenuItem2);
+
+        jMenuBar1.add(menAjuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -203,10 +227,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_menOpcSairActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void menRealizarEquivalenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menRealizarEquivalenciaActionPerformed
         // TODO add your handling code here:
         TelaEquivalencia equivalencia = new TelaEquivalencia();
         equivalencia.setVisible(true);
+    }//GEN-LAST:event_menRealizarEquivalenciaActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        TelaFluxograma fluxo = new TelaFluxograma();
+        fluxo.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
 
@@ -246,16 +276,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JLabel lblData;
     public static javax.swing.JLabel lblUsuario;
     private javax.swing.JMenuItem manCadArea;
-    private javax.swing.JMenu menCad;
+    private javax.swing.JMenu menAjuda;
+    public static javax.swing.JMenu menCad;
     private javax.swing.JMenuItem menCadCursos;
     private javax.swing.JMenuItem menCadGrupo;
     private javax.swing.JMenuItem menCadPpc;
     private javax.swing.JMenuItem menCadUc;
+    private javax.swing.JMenu menEquivalencia;
     private javax.swing.JMenu menOpc;
     private javax.swing.JMenuItem menOpcLogout;
     private javax.swing.JMenuItem menOpcSair;
+    private javax.swing.JMenuItem menRealizarEquivalencia;
     // End of variables declaration//GEN-END:variables
 }

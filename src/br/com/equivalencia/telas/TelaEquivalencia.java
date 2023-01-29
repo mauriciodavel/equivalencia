@@ -285,32 +285,34 @@ public class TelaEquivalencia extends javax.swing.JFrame {
         }
     }
 
-//    public void compararListas() {
-//
-//        DefaultTableModel tdm = (DefaultTableModel) tblDisciplinas.getModel();
-//
-//        DefaultTableModel tdm2 = (DefaultTableModel) tblDisciplinas1.getModel();
-//
-//        DefaultTableModel tdm3 = (DefaultTableModel) tblDisciplinas2.getModel();
-//
-//        tdm3.setRowCount(0);
-//
-//        tdm.getDataVector().forEach(l -> {
-//
-//            tdm2.getDataVector().forEach(m -> {
-//
-//                if (l.get(1).equals(m.get(1))) {
-//                    tdm3.addRow(new Object[]{
-//                        l.get(0),
-//                        l.get(1).toString().toUpperCase(),
-//                        l.get(2).toString(),
-//                        l.get(3).toString()
-//
-//                    });
-//                }
-//            });
-//        });
-//    }
+    public void compararListas() {
+
+        DefaultTableModel tdm = (DefaultTableModel) tblDisciplinas.getModel();
+
+        DefaultTableModel tdm2 = (DefaultTableModel) tblDisciplinas1.getModel();
+
+        DefaultTableModel tdm3 = (DefaultTableModel) tblDisciplinas2.getModel();
+
+        tdm3.setRowCount(0);
+
+        tdm.getDataVector().forEach(l -> {
+            
+            tdm2.getDataVector().forEach(m -> {
+                
+                if (l.get(5).equals(m.get(5))) {
+                    tdm3.addRow(new Object[]{
+                        l.get(0),
+                        l.get(1).toString().toUpperCase(),
+                        l.get(2).toString(),
+                        l.get(3).toString(),
+                        l.get(4).toString(),
+                        l.get(5).toString(),
+                        l.get(6).toString()
+                    });
+                }
+            });
+        });
+    }
 
     public TelaEquivalencia() {
         initComponents();
@@ -350,6 +352,7 @@ public class TelaEquivalencia extends javax.swing.JFrame {
         tblDisciplinas1 = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SIS Equivalência - SENAI Vitória - Verificar Equivalência");
@@ -398,13 +401,13 @@ public class TelaEquivalencia extends javax.swing.JFrame {
 
         tblDisciplinas2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "U.C.", "C.H. Total", "C.H. Pres.", "C.H. EAD", "ID Grupo Equiv."
             }
         ));
         jScrollPane3.setViewportView(tblDisciplinas2);
@@ -479,6 +482,13 @@ public class TelaEquivalencia extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(204, 0, 51));
         jLabel8.setText("PPC a Cursar");
 
+        jButton2.setText("Verificar Equivalência");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -540,8 +550,13 @@ public class TelaEquivalencia extends javax.swing.JFrame {
                                 .addComponent(cboPpc1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(241, 241, 241))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(442, 442, 442)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 990, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(604, 604, 604)
+                        .addComponent(jButton2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -591,9 +606,11 @@ public class TelaEquivalencia extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -657,6 +674,11 @@ public class TelaEquivalencia extends javax.swing.JFrame {
         listar_disciplinas1();
     }//GEN-LAST:event_cboPpc1FocusLost
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+               compararListas();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -697,6 +719,7 @@ public class TelaEquivalencia extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboPpc;
     private javax.swing.JComboBox<String> cboPpc1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
