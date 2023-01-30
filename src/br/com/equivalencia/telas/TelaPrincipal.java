@@ -7,6 +7,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public TelaPrincipal() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     @SuppressWarnings("unchecked")
@@ -16,13 +17,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lblUsuario = new javax.swing.JLabel();
         lblData = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        btnArea = new javax.swing.JButton();
+        btnCurso = new javax.swing.JButton();
+        btnGrupoEquiv = new javax.swing.JButton();
+        btnUnidades = new javax.swing.JButton();
+        btnPpc = new javax.swing.JButton();
+        btnEquivalencia = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menCad = new javax.swing.JMenu();
         manCadArea = new javax.swing.JMenuItem();
         menCadCursos = new javax.swing.JMenuItem();
         menCadPpc = new javax.swing.JMenuItem();
-        menCadUc = new javax.swing.JMenuItem();
         menCadGrupo = new javax.swing.JMenuItem();
+        menCadUc = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         menEquivalencia = new javax.swing.JMenu();
         menRealizarEquivalencia = new javax.swing.JMenuItem();
         menOpc = new javax.swing.JMenu();
@@ -44,15 +52,63 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         lblData.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        btnArea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/equivalencia/icones/area_tec.png"))); // NOI18N
+        btnArea.setEnabled(false);
+
+        btnCurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/equivalencia/icones/cursos.png"))); // NOI18N
+        btnCurso.setEnabled(false);
+
+        btnGrupoEquiv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/equivalencia/icones/grupos_equivalência.png"))); // NOI18N
+        btnGrupoEquiv.setEnabled(false);
+
+        btnUnidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/equivalencia/icones/ucs.png"))); // NOI18N
+        btnUnidades.setEnabled(false);
+
+        btnPpc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/equivalencia/icones/ppc.png"))); // NOI18N
+        btnPpc.setEnabled(false);
+
+        btnEquivalencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/equivalencia/icones/equivalênica.png"))); // NOI18N
+
+        jDesktopPane1.setLayer(btnArea, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(btnCurso, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(btnGrupoEquiv, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(btnUnidades, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(btnPpc, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(btnEquivalencia, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 923, Short.MAX_VALUE)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(271, 271, 271)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                    .addComponent(btnArea, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnPpc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnGrupoEquiv, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEquivalencia, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(317, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnArea, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGrupoEquiv, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPpc, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEquivalencia, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(149, 149, 149))
         );
 
         menCad.setText("Cadastro");
@@ -82,6 +138,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menCad.add(menCadPpc);
 
+        menCadGrupo.setText("Grupo de Equivalência");
+        menCadGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menCadGrupoActionPerformed(evt);
+            }
+        });
+        menCad.add(menCadGrupo);
+
         menCadUc.setText("Unidades Curriculares");
         menCadUc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,13 +154,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menCad.add(menCadUc);
 
-        menCadGrupo.setText("Grupo de Equivalência");
-        menCadGrupo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menCadGrupoActionPerformed(evt);
-            }
-        });
-        menCad.add(menCadGrupo);
+        jMenuItem3.setText("Usuários");
+        menCad.add(jMenuItem3);
 
         jMenuBar1.add(menCad);
 
@@ -157,9 +216,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                    .addComponent(lblUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
                     .addComponent(lblData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -170,7 +229,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(lblData, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(556, Short.MAX_VALUE))
+                .addContainerGap(574, Short.MAX_VALUE))
             .addComponent(jDesktopPane1)
         );
 
@@ -273,10 +332,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JButton btnArea;
+    public static javax.swing.JButton btnCurso;
+    private javax.swing.JButton btnEquivalencia;
+    public static javax.swing.JButton btnGrupoEquiv;
+    public static javax.swing.JButton btnPpc;
+    public static javax.swing.JButton btnUnidades;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JLabel lblData;
     public static javax.swing.JLabel lblUsuario;
     private javax.swing.JMenuItem manCadArea;
