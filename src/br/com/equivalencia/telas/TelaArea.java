@@ -126,8 +126,12 @@ public class TelaArea extends javax.swing.JFrame {
                     btnConsultar.setEnabled(false);
             }
             
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        } catch (java.sql.SQLIntegrityConstraintViolationException e) {
+            JOptionPane.showMessageDialog(null, "Não é possível remover esta Área Tecnológica, pois existem Cursos vinculados a esta Área");
+            JOptionPane.showMessageDialog(null, "Para remover esta Área é necessário remover primeiramente o curso");
+            
+        } catch (Exception e2){
+            JOptionPane.showMessageDialog(null, e2);
         }
         }
     }
