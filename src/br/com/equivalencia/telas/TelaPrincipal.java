@@ -1,43 +1,18 @@
 package br.com.equivalencia.telas;
 
 import br.com.equivalencia.dal.ModuloConexao;
-import java.security.Principal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
-
 
 public class TelaPrincipal extends javax.swing.JFrame {   
 
     Connection conexao = null;
     
-    private void carregarRelatorio(String caminho, Map parametros) throws SQLException{
-        try {
-            JasperReport relatorio = JasperCompileManager.compileReport(caminho);
-            JasperPrint relatorio_preenchido = JasperFillManager.fillReport(relatorio, parametros, conexao);
-            JasperViewer.viewReport(relatorio_preenchido);
-            conexao.close();
-        } catch (JRException ex) {
-            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(rootPane, "Erro ao carregar relatório!");
-        } catch (SQLException ex){
-            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(rootPane, "Erro ao carregar relatório!");
-        }
-    }
-    
-
     public TelaPrincipal() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
@@ -210,11 +185,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menRel.setText("Relatórios");
 
         menRelArea.setText("Área Técnológica");
-        menRelArea.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menRelAreaActionPerformed(evt);
-            }
-        });
         menRel.add(menRelArea);
 
         jMenuBar1.add(menRel);
@@ -345,16 +315,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaFluxograma fluxo = new TelaFluxograma();
         fluxo.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void menRelAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menRelAreaActionPerformed
-        try {
-            // gerando relatório de clientes
-            carregarRelatorio("C:/Users/mdavel/JaspersoftWorkspace/Equivalencia/Blank_A4.jasper", null);
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_menRelAreaActionPerformed
 
 
     public static void main(String args[]) {
