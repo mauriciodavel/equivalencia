@@ -1,13 +1,47 @@
 package br.com.equivalencia.telas;
 
+import br.com.equivalencia.dal.ModuloConexao;
+import java.security.Principal;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
-public class TelaPrincipal extends javax.swing.JFrame {
+
+public class TelaPrincipal extends javax.swing.JFrame {   
+
+    Connection conexao = null;
+    
+    private void carregarRelatorio(String caminho, Map parametros) throws SQLException{
+        try {
+            JasperReport relatorio = JasperCompileManager.compileReport(caminho);
+            JasperPrint relatorio_preenchido = JasperFillManager.fillReport(relatorio, parametros, conexao);
+            JasperViewer.viewReport(relatorio_preenchido);
+            conexao.close();
+        } catch (JRException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, "Erro ao carregar relatório!");
+        } catch (SQLException ex){
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, "Erro ao carregar relatório!");
+        }
+    }
+    
 
     public TelaPrincipal() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+        conexao = ModuloConexao.conector();
     }
 
     @SuppressWarnings("unchecked")
@@ -33,6 +67,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         menEquivalencia = new javax.swing.JMenu();
         menRealizarEquivalencia = new javax.swing.JMenuItem();
+        menRel = new javax.swing.JMenu();
+        menRelArea = new javax.swing.JMenuItem();
         menOpc = new javax.swing.JMenu();
         menOpcLogout = new javax.swing.JMenuItem();
         menOpcSair = new javax.swing.JMenuItem();
@@ -171,6 +207,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(menEquivalencia);
 
+        menRel.setText("Relatórios");
+
+        menRelArea.setText("Área Técnológica");
+        menRelArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menRelAreaActionPerformed(evt);
+            }
+        });
+        menRel.add(menRelArea);
+
+        jMenuBar1.add(menRel);
+
         menOpc.setText("Opções");
 
         menOpcLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, java.awt.event.InputEvent.ALT_DOWN_MASK));
@@ -229,7 +277,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(lblData, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(574, Short.MAX_VALUE))
+                .addContainerGap(575, Short.MAX_VALUE))
             .addComponent(jDesktopPane1)
         );
 
@@ -298,6 +346,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         fluxo.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void menRelAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menRelAreaActionPerformed
+        try {
+            // gerando relatório de clientes
+            carregarRelatorio("C:/Users/mdavel/JaspersoftWorkspace/Equivalencia/Blank_A4.jasper", null);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_menRelAreaActionPerformed
+
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -357,5 +415,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menOpcLogout;
     private javax.swing.JMenuItem menOpcSair;
     private javax.swing.JMenuItem menRealizarEquivalencia;
+    private javax.swing.JMenu menRel;
+    private javax.swing.JMenuItem menRelArea;
     // End of variables declaration//GEN-END:variables
 }

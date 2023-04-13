@@ -20,7 +20,6 @@ public class ModuloConexao {
         //String password = "Passw0rd";
         
         String url = "jdbc:mysql://localhost:3306/equivalencia";
-        //String url = "jdbc:mysql://194.163.44.92:3306/dbenderson";
         String user = "root";
         String password = "";
         

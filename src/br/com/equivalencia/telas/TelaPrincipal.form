@@ -75,6 +75,21 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="menRel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Relat&#xf3;rios"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menRelArea">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#xc1;rea T&#xe9;cnol&#xf3;gica"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menRelAreaActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="menOpc">
           <Properties>
             <Property name="text" type="java.lang.String" value="Op&#xe7;&#xf5;es"/>
@@ -172,7 +187,7 @@
               <Component id="lblUsuario" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="lblData" min="-2" pref="23" max="-2" attributes="0"/>
-              <EmptySpace pref="574" max="32767" attributes="0"/>
+              <EmptySpace pref="575" max="32767" attributes="0"/>
           </Group>
           <Component id="jDesktopPane1" alignment="0" max="32767" attributes="0"/>
       </Group>
