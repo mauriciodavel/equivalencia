@@ -1,6 +1,7 @@
 package br.com.equivalencia.telas;
 
 import br.com.equivalencia.dal.ModuloConexao;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -178,6 +179,17 @@ public class TelaArea extends javax.swing.JFrame {
         jLabel1.setText("Id:");
 
         txtIdArea.setEnabled(false);
+        txtIdArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIdAreaKeyPressed(evt);
+            }
+        });
+
+        txtNomeArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNomeAreaKeyPressed(evt);
+            }
+        });
 
         jLabel2.setText("Nome:");
 
@@ -317,6 +329,20 @@ public class TelaArea extends javax.swing.JFrame {
         // TODO add your handling code here:
         fecharconexao();
     }//GEN-LAST:event_formWindowClosed
+
+    private void txtNomeAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeAreaKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            adicionar();
+        }
+    }//GEN-LAST:event_txtNomeAreaKeyPressed
+
+    private void txtIdAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdAreaKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            alterar();
+        }
+    }//GEN-LAST:event_txtIdAreaKeyPressed
 
     /**
      * @param args the command line arguments
